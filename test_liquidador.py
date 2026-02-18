@@ -109,5 +109,48 @@ class TestCalculoSalario(unittest.TestCase):
         #verificar la salida
         self.assertEqual(salario_calculado, salario_esperado)
 
+    def test_salario_en_limite_de_impuestos(self):
+
+        #entradas
+        salario = 3500000
+        horas_extra = 0
+        bonificaciones = 0
+        comisiones = 0
+        auxilios = 0
+        salud = 0.04
+        pension = 0.04
+        impuesto_dinero = 35000
+
+        #proceso
+        salario_calculado = logica_liquidador.calcular_salario(salario, horas_extra, bonificaciones, comisiones, auxilios, salud, pension, impuesto_dinero)
+
+        #Datos de salida esperados
+        salario_esperado = 3185000
+
+        #verificar la salida
+        self.assertEqual(salario_calculado, salario_esperado)
+    
+    def test_salario_muy_alto(self):
+
+        #entradas
+        salario = 25000000
+        horas_extra = 200000
+        bonificaciones = 100000
+        comisiones = 30000
+        auxilios = 0
+        salud = 0.04
+        pension = 0.04
+        impuesto_dinero = 250000
+
+        #proceso
+        salario_calculado = logica_liquidador.calcular_salario(salario, horas_extra, bonificaciones, comisiones, auxilios, salud, pension, impuesto_dinero)
+
+        #Datos de salida esperados
+        salario_esperado = 23080000
+
+        #verificar la salida
+        self.assertEqual(salario_calculado, salario_esperado)
+
+
 if __name__ == '__main__':
     unittest.main()
