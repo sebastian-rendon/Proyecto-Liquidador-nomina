@@ -173,7 +173,23 @@ class TestCalculoSalario(unittest.TestCase):
         #verificar la salida
         self.assertEqual(salario_calculado, salario_esperado)
 
-    
+    def test_salario_none(self):
+
+        # ENTRADAS
+        salario = None
+        horas_extra = 0
+        bonificaciones = 0
+        comisiones = 0
+        auxilios = 0
+        salud = 0.04
+        pension = 0.04
+        impuesto_dinero = 0
+
+        # Verifica que se genere una excepción
+        with self.assertRaises(Exception):
+            logica_liquidador.calcular_salario(
+                salario, horas_extra, bonificaciones,
+                comisiones, auxilios, salud, pension, impuesto_dinero)
 
 
 if __name__ == '__main__':
