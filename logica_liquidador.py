@@ -10,6 +10,29 @@ def calcular_salario(salario, horas_extra, bonificaciones, comisiones, auxilios,
     pension: Porcentaje de pension del trabajador, en Colombia permanece generalmente sin cambios expresado en decimal (ejemplo: 4% ingresar 0.04)
     impuesto_dinero: Cualquier tipo de impuesto aplicado, expresado en dinero (un entero), caso contrario ingresa 0
     """
+
+    MAX_VALOR = 1_000_000_000  # Límite máximo permitido
+
+    # Campo obligatorio
+    if salario is None:
+        raise ValueError("ERROR, El salario es un campo obligatorio")
+
+    # Tipo de dato
+    if not isinstance(salario, (int, float)):
+        raise TypeError("ERROR, Tipo de dato inválido")
+
+    # Negativo
+    if salario < 0:
+        raise ValueError("ERROR, El salario no puede ser negativo")
+
+    # Número excesivamente grande
+    if salario > MAX_VALOR:
+        raise ValueError("ERROR, Valor fuera del rango permitido")
+
+    # Porcentaje fuera del rango legal
+    if salud > 0.20 or pension > 0.20:
+        raise ValueError("ERROR, Porcentaje fuera del rango legal permitido")
+
     valores_devengados = sum([salario, horas_extra, bonificaciones, comisiones, auxilios])
     salud_dinero = salud * salario 
     pension_dinero = pension * salario
