@@ -241,6 +241,23 @@ class TestCalculoSalario(unittest.TestCase):
             logica_liquidador.calcular_salario(
                 salario, horas_extra, bonificaciones,
                 comisiones, auxilios, salud, pension, impuesto_dinero)
+            
+    def test_porcentaje_fuera_rango(self):
+
+        # ENTRADAS
+        salario = 5000000
+        horas_extra = 0
+        bonificaciones = 0
+        comisiones = 0
+        auxilios = 0
+        salud = 0.30
+        pension = 0.04
+        impuesto_dinero = 0
+
+        with self.assertRaises(Exception):
+            logica_liquidador.calcular_salario(
+                salario, horas_extra, bonificaciones,
+                comisiones, auxilios, salud, pension, impuesto_dinero)
 
 
 if __name__ == '__main__':
