@@ -12,6 +12,9 @@ class ErrorSalarioNegativo(Exception):
 class ErrorSalarioGrande(Exception):
     "Error cuando el salario es excesivamente grande"
 
+class ErrorPorcentajesFueraRango(Exception):
+    "Error cuando se ingresa un porcentaje de impuestos es mayor al legal"
+
 
 
 def calcular_salario(salario, horas_extra, bonificaciones, comisiones, auxilios, salud, pension, impuesto_dinero):
@@ -46,7 +49,7 @@ def calcular_salario(salario, horas_extra, bonificaciones, comisiones, auxilios,
 
     # Porcentaje fuera del rango legal
     if salud > 0.20 or pension > 0.20:
-        raise ValueError("ERROR, Porcentaje fuera del rango legal permitido")
+        raise ErrorPorcentajesFueraRango("ERROR, Porcentaje fuera del rango legal permitido")
 
     valores_devengados = sum([salario, horas_extra, bonificaciones, comisiones, auxilios])
     salud_dinero = salud * salario 
