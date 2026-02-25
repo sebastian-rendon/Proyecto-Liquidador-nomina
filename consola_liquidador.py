@@ -2,14 +2,14 @@ import logica_liquidador
 
 try:
     entrada_salario = input("Ingrese el valor del salario mensual: ")
-    entrada_horas_extra = input("Ingrese el valor de las horas extra: ")
-    entrada_bonificaciones = input("Ingrese el valor de las bonificaciones: ")
-    entrada_comisiones = input("Ingrese el valor de las comisiones: ")
-    entrada_auxilios = input("Ingrese el valor de los auxilios: ")
+    entrada_horas_extra = input("Ingrese el valor (dinero mensual) de las horas extra: ")
+    entrada_bonificaciones = input("Ingrese el valor (dinero mensual) de las bonificaciones: ")
+    entrada_comisiones = input("Ingrese el valor (dinero mensual) de las comisiones: ")
+    entrada_auxilios = input("Ingrese el valor (dinero mensual) de los auxilios: ")
 
     entrada_salud = input("Ingrese el porcentaje de la salud que usted paga (en decimal, ademas no mayor a 4%): ")
     entrada_pension = input("Ingrese el porcentaje de la pensión que usted paga (en decimal, ademas no mayor a 4%): ")
-    entrada_impuesto_dinero = input("Ingrese el valor de los impuestos que usted paga: ")
+    entrada_impuesto_dinero = input("Ingrese el valor (dinero mensual) de los impuestos que usted paga: ")
 
     campos = [
         entrada_salario,
@@ -22,9 +22,23 @@ try:
         entrada_impuesto_dinero
     ]
 
+    indices_vacios = [i for i, valor in enumerate(campos) if valor == ""]
     
-    if any(campo == "" for campo in campos):
-        raise ValueError("ERROR, Hay campos obligatorios vacíos")
+    if indices_vacios:
+        nombres_campos = [
+            "salario", 
+            "horas extra", 
+            "bonificaciones", 
+            "comisiones", 
+            "auxilios", 
+            "salud", 
+            "pensión", 
+            "impuesto"
+        ]
+        
+        campos_faltantes = [nombres_campos[i] for i in indices_vacios]
+        raise ValueError(f"ERROR: Campos obligatorios vacíos: {', '.join(campos_faltantes)}")
+
 
     salario = float(entrada_salario)
     horas_extra = float(entrada_horas_extra)

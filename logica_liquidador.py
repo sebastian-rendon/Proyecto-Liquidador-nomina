@@ -33,7 +33,7 @@ def calcular_salario(salario, horas_extra, bonificaciones, comisiones, auxilios,
 
     # Campo obligatorio
     if salario is None:
-        raise ErrorCampoObligatorio("ERROR, El salario ingresado es un campo obligatorio")
+        raise ErrorCampoObligatorio("ERROR, El salario es un campo obligatorio")
 
     # Tipo de dato
     if not isinstance(salario, (int, float)):
@@ -41,7 +41,7 @@ def calcular_salario(salario, horas_extra, bonificaciones, comisiones, auxilios,
 
     # Negativo
     if salario < 0:
-        raise ErrorSalarioNegativo(f"ERROR, El salario {salario} no puede ser un valor negativo")
+        raise ErrorSalarioNegativo(f"ERROR, El salario ingresado ' {salario} ' no puede ser un valor negativo")
 
     # Número excesivamente grande
     if salario > MAX_VALOR:
