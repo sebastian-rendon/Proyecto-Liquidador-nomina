@@ -32,12 +32,12 @@ def calcular_salario(salario, horas_extra, bonificaciones, comisiones, auxilios,
     MAX_VALOR = 1_000_000_000  # Límite máximo permitido
 
     # Campo obligatorio
-    if salario is None:
+    if salario == "":
         raise ErrorCampoObligatorio("ERROR, El salario es un campo obligatorio")
 
     # Tipo de dato
     if not isinstance(salario, (int, float)):
-        raise ErrorTipoInvalido(f"ERROR, El salario {salario} es un tipo de dato inválido, ingrese un valor numérico")
+        raise ErrorTipoInvalido(f"ERROR, El valor ' {salario} ' es un tipo de dato inválido, ingrese un valor numérico")
 
     # Negativo
     if salario < 0:

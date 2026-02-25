@@ -39,8 +39,7 @@ try:
         campos_faltantes = [nombres_campos[i] for i in indices_vacios]
         raise ValueError(f"ERROR: Campos obligatorios vacíos: {', '.join(campos_faltantes)}")
 
-
-    salario = float(entrada_salario)
+    salario = entrada_salario
     horas_extra = float(entrada_horas_extra)
     bonificaciones = float(entrada_bonificaciones)
     comisiones = float(entrada_comisiones)
