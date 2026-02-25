@@ -186,7 +186,7 @@ class TestCalculoSalario(unittest.TestCase):
         impuesto_dinero = 0
 
         # Verifica que se genere una excepción
-        with self.assertRaises(Exception):
+        with self.assertRaises(logica_liquidador.ErrorCampoObligatorio):
             logica_liquidador.calcular_salario(
                 salario, horas_extra, bonificaciones,
                 comisiones, auxilios, salud, pension, impuesto_dinero)

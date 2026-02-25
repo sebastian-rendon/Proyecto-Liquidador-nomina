@@ -1,3 +1,11 @@
+class ErrorCampoObligatorio(Exception):
+    pass
+
+class ErrorTipoInvalido(Exception):
+    "Error cuando el salario no es de tipo entero o float"
+    pass
+
+
 
 def calcular_salario(salario, horas_extra, bonificaciones, comisiones, auxilios, salud, pension, impuesto_dinero):
     """
@@ -15,7 +23,7 @@ def calcular_salario(salario, horas_extra, bonificaciones, comisiones, auxilios,
 
     # Campo obligatorio
     if salario is None:
-        raise ValueError("ERROR, El salario es un campo obligatorio")
+        raise ErrorCampoObligatorio("ERROR, El salario es un campo obligatorio")
 
     # Tipo de dato
     if not isinstance(salario, (int, float)):
