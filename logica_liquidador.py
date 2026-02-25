@@ -33,23 +33,23 @@ def calcular_salario(salario, horas_extra, bonificaciones, comisiones, auxilios,
 
     # Campo obligatorio
     if salario is None:
-        raise ErrorCampoObligatorio("ERROR, El salario es un campo obligatorio")
+        raise ErrorCampoObligatorio("ERROR, El salario ingresado es un campo obligatorio")
 
     # Tipo de dato
     if not isinstance(salario, (int, float)):
-        raise ErrorTipoInvalido("ERROR, Tipo de dato inválido")
+        raise ErrorTipoInvalido(f"ERROR, El salario {salario} es un tipo de dato inválido, ingrese un valor numérico")
 
     # Negativo
     if salario < 0:
-        raise ErrorSalarioNegativo("ERROR, El salario no puede ser negativo")
+        raise ErrorSalarioNegativo(f"ERROR, El salario {salario} no puede ser un valor negativo")
 
     # Número excesivamente grande
     if salario > MAX_VALOR:
-        raise ErrorSalarioGrande("ERROR, Valor fuera del rango permitido")
+        raise ErrorSalarioGrande(f"ERROR, El Valor {salario} ingresado esta fuera del rango permitido(1.000.000.000)")
 
     # Porcentaje fuera del rango legal
-    if salud > 0.20 or pension > 0.20:
-        raise ErrorPorcentajesFueraRango("ERROR, Porcentaje fuera del rango legal permitido")
+    if salud > 0.04 or pension > 0.04:
+        raise ErrorPorcentajesFueraRango(f"ERROR, El Porcentaje de salud {salud * 100} o pension {pension * 100} son valores fuera del rango legal permitido(4%)")
 
     valores_devengados = sum([salario, horas_extra, bonificaciones, comisiones, auxilios])
     salud_dinero = salud * salario 
