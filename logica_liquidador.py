@@ -5,6 +5,9 @@ class ErrorTipoInvalido(Exception):
     "Error cuando el salario no es de tipo entero o float"
     pass
 
+class ErrorSalarioNegativo(Exception):
+    "Error cuando el salario es negativo"
+    pass
 
 
 def calcular_salario(salario, horas_extra, bonificaciones, comisiones, auxilios, salud, pension, impuesto_dinero):
@@ -27,11 +30,11 @@ def calcular_salario(salario, horas_extra, bonificaciones, comisiones, auxilios,
 
     # Tipo de dato
     if not isinstance(salario, (int, float)):
-        raise TypeError("ERROR, Tipo de dato inválido")
+        raise ErrorTipoInvalido("ERROR, Tipo de dato inválido")
 
     # Negativo
     if salario < 0:
-        raise ValueError("ERROR, El salario no puede ser negativo")
+        raise ErrorSalarioNegativo("ERROR, El salario no puede ser negativo")
 
     # Número excesivamente grande
     if salario > MAX_VALOR:

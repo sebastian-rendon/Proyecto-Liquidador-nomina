@@ -203,7 +203,7 @@ class TestCalculoSalario(unittest.TestCase):
         pension = 0.04
         impuesto_dinero = 0
 
-        with self.assertRaises(Exception):
+        with self.assertRaises(logica_liquidador.ErrorTipoInvalido):
             logica_liquidador.calcular_salario(
                 salario, horas_extra, bonificaciones,
                 comisiones, auxilios, salud, pension, impuesto_dinero)
@@ -220,7 +220,7 @@ class TestCalculoSalario(unittest.TestCase):
         pension = 0.04
         impuesto_dinero = 0
 
-        with self.assertRaises(Exception):
+        with self.assertRaises(logica_liquidador.ErrorSalarioNegativo):
             logica_liquidador.calcular_salario(
                 salario, horas_extra, bonificaciones,
                 comisiones, auxilios, salud, pension, impuesto_dinero)
