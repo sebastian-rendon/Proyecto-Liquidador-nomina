@@ -1,13 +1,17 @@
 class ErrorCampoObligatorio(Exception):
-    pass
+    "Error cuando no se reibe un dato que es obligatorio"
 
 class ErrorTipoInvalido(Exception):
     "Error cuando el salario no es de tipo entero o float"
-    pass
+
 
 class ErrorSalarioNegativo(Exception):
     "Error cuando el salario es negativo"
-    pass
+    
+
+class ErrorSalarioGrande(Exception):
+    "Error cuando el salario es excesivamente grande"
+
 
 
 def calcular_salario(salario, horas_extra, bonificaciones, comisiones, auxilios, salud, pension, impuesto_dinero):
@@ -38,7 +42,7 @@ def calcular_salario(salario, horas_extra, bonificaciones, comisiones, auxilios,
 
     # Número excesivamente grande
     if salario > MAX_VALOR:
-        raise ValueError("ERROR, Valor fuera del rango permitido")
+        raise ErrorSalarioGrande("ERROR, Valor fuera del rango permitido")
 
     # Porcentaje fuera del rango legal
     if salud > 0.20 or pension > 0.20:
