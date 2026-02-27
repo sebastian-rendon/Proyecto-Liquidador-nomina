@@ -176,7 +176,7 @@ class TestCalculoSalario(unittest.TestCase):
     def test_salario_none(self):
 
         # ENTRADAS
-        salario = None
+        salario = ""
         horas_extra = 0
         bonificaciones = 0
         comisiones = 0
