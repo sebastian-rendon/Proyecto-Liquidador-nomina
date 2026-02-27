@@ -32,6 +32,12 @@ Este repositorio incluye una entrevista relacionada con el proyecto a un interca
 
 📁 La entrevista completa se encuentra en la carpeta `entrevista`.
 
+---
+## Documento casos de prueba
+
+Este repositorio incluye el documento de excel el cual tiene los casos de pruebas propuestos para el proyecto.
+
+📁 El documento de excel se encuentra en `CASOS DE PRUEBA PROYECTO_1`
 
 ---
 ## 📤 Entradas y procesos de salida
