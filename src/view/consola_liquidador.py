@@ -1,4 +1,7 @@
-import logica_liquidador
+import sys
+sys.path.append( 'src')
+
+from model import logica_liquidador
 
 try:
     entrada_salario = input("Ingrese el valor del salario mensual: ")
