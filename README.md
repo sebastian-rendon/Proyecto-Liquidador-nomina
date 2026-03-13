@@ -45,6 +45,7 @@ py src/view/consola_liquidador.py
 - carpeta tests: Pruebas unitarias de la aplicación.
 
 Cada carpeta posee __init__.py para que python reconozca cada una y pueda relacionar su respectivo import.
+
 ---
 ## Uso
 Para ejecutar las pruebas unitarias, dirijase la carpeta raiz y use el siguiente el comando:
