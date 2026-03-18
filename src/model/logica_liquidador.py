@@ -24,8 +24,8 @@ def calcular_salario(salario, horas_extra, bonificaciones, comisiones, auxilios,
     bonificaciones: En caso de que el trabajador obtuviera bonificaciones, caso contrario ingresa 0
     comisiones: En caso de que el trabajador haya recibido comisiones, caso contrario ingresa 0
     auxilios: En caso de que el trabajador obtuviera auxilios, caso contrario ingresa 0
-    salud: Porcentaje de salud del trabajador, en Colombia permanece generalmente sin cambios expresado en decimal (ejemplo: 4% ingresar 0.04)
-    pension: Porcentaje de pension del trabajador, en Colombia permanece generalmente sin cambios expresado en decimal (ejemplo: 4% ingresar 0.04)
+    salud: Porcentaje de salud del trabajador, en Colombia permanece generalmente sin cambios(4%)
+    pension: Porcentaje de pension del trabajador, en Colombia permanece generalmente sin cambios(4%)
     impuesto_dinero: Cualquier tipo de impuesto aplicado, expresado en dinero (un entero), caso contrario ingresa 0
     """
 
@@ -48,12 +48,12 @@ def calcular_salario(salario, horas_extra, bonificaciones, comisiones, auxilios,
         raise ErrorSalarioGrande(f"ERROR, El Valor {salario} ingresado esta fuera del rango permitido(1.000.000.000)")
 
     # Porcentaje fuera del rango legal
-    if salud > 0.04 or pension > 0.04:
-        raise ErrorPorcentajesFueraRango(f"ERROR, El Porcentaje de salud {salud * 100} o pension {pension * 100} son valores fuera del rango legal permitido(4%)")
+    if salud > 4 or pension > 4:
+        raise ErrorPorcentajesFueraRango(f"ERROR, El Porcentaje de salud {salud}% o pension {pension}% son valores fuera del rango legal permitido(4%)")
 
     valores_devengados = sum([salario, horas_extra, bonificaciones, comisiones, auxilios])
-    salud_dinero = salud * salario 
-    pension_dinero = pension * salario
+    salud_dinero = (salud / 100) * salario 
+    pension_dinero = (pension / 100) * salario
     
     deducciones_de_ley = sum([salud_dinero, pension_dinero, impuesto_dinero])
     salario_neto = valores_devengados - deducciones_de_ley

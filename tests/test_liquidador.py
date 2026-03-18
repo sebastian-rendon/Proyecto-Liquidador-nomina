@@ -15,8 +15,8 @@ class TestCalculoSalario(unittest.TestCase):
         bonificaciones = 50000
         comisiones = 100000
         auxilios = 0
-        salud = 0.04
-        pension = 0.04
+        salud = 4
+        pension = 4
         impuesto_dinero = 50000
 
         #proceso
@@ -36,8 +36,8 @@ class TestCalculoSalario(unittest.TestCase):
         bonificaciones = 100000
         comisiones = 20000
         auxilios = 0
-        salud = 0.04
-        pension = 0.04
+        salud = 4
+        pension = 4
         impuesto_dinero = 62000
 
         #proceso
@@ -57,8 +57,8 @@ class TestCalculoSalario(unittest.TestCase):
         bonificaciones = 50000
         comisiones = 20000
         auxilios = 0
-        salud = 0.04
-        pension = 0.04
+        salud = 4
+        pension = 4
         impuesto_dinero = 45000
 
         #proceso
@@ -78,8 +78,8 @@ class TestCalculoSalario(unittest.TestCase):
         bonificaciones = 60000
         comisiones = 10000
         auxilios = 0
-        salud = 0.04
-        pension = 0.04
+        salud = 4
+        pension = 4
         impuesto_dinero = 40000
 
         #proceso
@@ -100,8 +100,8 @@ class TestCalculoSalario(unittest.TestCase):
         bonificaciones = 0
         comisiones = 0
         auxilios = 0
-        salud = 0.04
-        pension = 0.04
+        salud = 4
+        pension = 4
         impuesto_dinero = 0
 
         #proceso
@@ -121,8 +121,8 @@ class TestCalculoSalario(unittest.TestCase):
         bonificaciones = 0
         comisiones = 0
         auxilios = 0
-        salud = 0.04
-        pension = 0.04
+        salud = 4
+        pension = 4
         impuesto_dinero = 35000
 
         #proceso
@@ -142,8 +142,8 @@ class TestCalculoSalario(unittest.TestCase):
         bonificaciones = 100000
         comisiones = 30000
         auxilios = 0
-        salud = 0.04
-        pension = 0.04
+        salud = 4
+        pension = 4
         impuesto_dinero = 250000
 
         #proceso
@@ -164,8 +164,8 @@ class TestCalculoSalario(unittest.TestCase):
         bonificaciones = 0
         comisiones = 0
         auxilios = 249095
-        salud = 0.04
-        pension = 0.04
+        salud = 4
+        pension = 4
         impuesto_dinero = 0
 
         #proceso
@@ -185,8 +185,8 @@ class TestCalculoSalario(unittest.TestCase):
         bonificaciones = 0
         comisiones = 0
         auxilios = 0
-        salud = 0.04
-        pension = 0.04
+        salud = 4
+        pension = 4
         impuesto_dinero = 0
 
         # Verifica que se genere una excepción
@@ -203,8 +203,8 @@ class TestCalculoSalario(unittest.TestCase):
         bonificaciones = 0
         comisiones = 0
         auxilios = 0
-        salud = 0.04
-        pension = 0.04
+        salud = 4
+        pension = 4
         impuesto_dinero = 0
 
         with self.assertRaises(logica_liquidador.ErrorTipoInvalido):
@@ -220,8 +220,8 @@ class TestCalculoSalario(unittest.TestCase):
         bonificaciones = 0
         comisiones = 0
         auxilios = 0
-        salud = 0.04
-        pension = 0.04
+        salud = 4
+        pension = 4
         impuesto_dinero = 0
 
         with self.assertRaises(logica_liquidador.ErrorSalarioNegativo):
@@ -237,8 +237,8 @@ class TestCalculoSalario(unittest.TestCase):
         bonificaciones = 0
         comisiones = 0
         auxilios = 0
-        salud = 0.04
-        pension = 0.04
+        salud = 4
+        pension = 4
         impuesto_dinero = 0
 
         with self.assertRaises(logica_liquidador.ErrorSalarioGrande):
@@ -254,8 +254,8 @@ class TestCalculoSalario(unittest.TestCase):
         bonificaciones = 0
         comisiones = 0
         auxilios = 0
-        salud = 0.30
-        pension = 0.04
+        salud = 30
+        pension = 4
         impuesto_dinero = 0
 
         with self.assertRaises(logica_liquidador.ErrorPorcentajesFueraRango):

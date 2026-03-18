@@ -10,8 +10,8 @@ try:
     entrada_comisiones = input("Ingrese el valor (dinero mensual) de las comisiones: ")
     entrada_auxilios = input("Ingrese el valor (dinero mensual) de los auxilios: ")
 
-    entrada_salud = input("Ingrese el porcentaje de la salud que usted paga (en decimal, ademas no mayor a 4%): ")
-    entrada_pension = input("Ingrese el porcentaje de la pensión que usted paga (en decimal, ademas no mayor a 4%): ")
+    entrada_salud = input("Ingrese el valor del porcentaje de la salud que usted paga (ademas no mayor a 4%): ")
+    entrada_pension = input("Ingrese el valor del porcentaje de la pensión que usted paga (ademas no mayor a 4%): ")
     entrada_impuesto_dinero = input("Ingrese el valor (dinero mensual) de los impuestos que usted paga: ")
 
     campos = [
