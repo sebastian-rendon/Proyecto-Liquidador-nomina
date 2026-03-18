@@ -177,7 +177,7 @@ class TestCalculoSalario(unittest.TestCase):
         #verificar la salida
         self.assertEqual(salario_calculado, salario_esperado)
 
-    def test_salario_none(self):
+    def test_salario_obligatorio(self):
 
         # ENTRADAS
         salario = ""
