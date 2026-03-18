@@ -36,8 +36,7 @@ try:
             "auxilios", 
             "salud", 
             "pensión", 
-            "impuesto"
-        ]
+            "impuesto"]
         
         campos_faltantes = [nombres_campos[i] for i in indices_vacios]
         raise ValueError(f"ERROR: Campos obligatorios vacíos: {', '.join(campos_faltantes)}")
@@ -52,16 +51,17 @@ try:
     pension = float(entrada_pension)
     impuesto_dinero = float(entrada_impuesto_dinero)
 
-    salario_neto = logica_liquidador.calcular_salario(
-        salario,
-        horas_extra,
-        bonificaciones,
-        comisiones,
-        auxilios,
-        salud,
-        pension,
-        impuesto_dinero
-    )
+    liquidacion = logica_liquidador.LiquidacionSalario(
+        salario= float( entrada_salario ),
+        horas_extra= float( entrada_horas_extra ),
+        bonificaciones= float( entrada_bonificaciones ),
+        comisiones= float( entrada_comisiones ),
+        auxilios= float( entrada_auxilios ),
+        salud= float( entrada_salud ),
+        pension= float( entrada_pension ),
+        impuesto_dinero = float( entrada_impuesto_dinero ))
+
+    salario_neto = logica_liquidador.calcular_salario( liquidacion )
 
     print("El salario neto es:", salario_neto)
 

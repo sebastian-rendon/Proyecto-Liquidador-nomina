@@ -1,60 +1,154 @@
-class ErrorCampoObligatorio(Exception):
-    "Error cuando no se reibe un dato que es obligatorio"
-
-class ErrorTipoInvalido(Exception):
-    "Error cuando el salario no es de tipo entero o float"
+MAX_SALARIO = 1_000_000_000  
+MAX_PORCENTAJE_SALUD = 4             
+MAX_PORCENTAJE_PENSION = 4              
 
 
-class ErrorSalarioNegativo(Exception):
-    "Error cuando el salario es negativo"
-    
-
-class ErrorSalarioGrande(Exception):
-    "Error cuando el salario es excesivamente grande"
-
-class ErrorPorcentajesFueraRango(Exception):
-    "Error cuando se ingresa un porcentaje de impuestos es mayor al legal"
-
-
-
-def calcular_salario(salario, horas_extra, bonificaciones, comisiones, auxilios, salud, pension, impuesto_dinero):
+class ErrorCampoObligatorio( Exception ):
     """
-    salario: El salario base del trabajador
-    horas_extra: En caso de que el trabajador haya realizado horas extra, caso contrario ingresa 0
-    bonificaciones: En caso de que el trabajador obtuviera bonificaciones, caso contrario ingresa 0
-    comisiones: En caso de que el trabajador haya recibido comisiones, caso contrario ingresa 0
-    auxilios: En caso de que el trabajador obtuviera auxilios, caso contrario ingresa 0
-    salud: Porcentaje de salud del trabajador, en Colombia permanece generalmente sin cambios(4%)
-    pension: Porcentaje de pension del trabajador, en Colombia permanece generalmente sin cambios(4%)
-    impuesto_dinero: Cualquier tipo de impuesto aplicado, expresado en dinero (un entero), caso contrario ingresa 0
+    Excepción personalizada para indicar que el salario es un campo obligatorio.
     """
+    def __init__( self ):
+        super().__init__(
+            f"[Campo obligatorio faltante] "
+            f"El salario es requerido y no puede estar vacío. "
+            f"Ingrese un valor numérico para el salario.")
 
-    MAX_VALOR = 1_000_000_000  # Límite máximo permitido
 
-    # Campo obligatorio
-    if salario == "":
-        raise ErrorCampoObligatorio("ERROR, El salario es un campo obligatorio")
+class ErrorTipoInvalido( Exception ):
+    """
+    Excepción personalizada para indicar que el salario no es de tipo int o float.
 
-    # Tipo de dato
-    if not isinstance(salario, (int, float)):
-        raise ErrorTipoInvalido(f"ERROR, El valor ' {salario} ' es un tipo de dato inválido, ingrese un valor numérico")
+    Para usar esta excepción, indique el valor recibido:
+        ErrorTipoInvalido( valor )
+    """
+    def __init__( self, valor ):
+        super().__init__(
+            f"[Tipo de dato inválido] "
+            f"El valor '{valor}' es de tipo {type(valor).__name__}. "
+            f"Se esperaba un número entero o decimal (int o float).")
 
-    # Negativo
-    if salario < 0:
-        raise ErrorSalarioNegativo(f"ERROR, El salario ingresado ' {salario} ' no puede ser un valor negativo")
 
-    # Número excesivamente grande
-    if salario > MAX_VALOR:
-        raise ErrorSalarioGrande(f"ERROR, El Valor {salario} ingresado esta fuera del rango permitido(1.000.000.000)")
+class ErrorSalarioNegativo( Exception ):
+    """
+    Excepción personalizada para indicar que el salario es negativo.
 
-    # Porcentaje fuera del rango legal
-    if salud > 4 or pension > 4:
-        raise ErrorPorcentajesFueraRango(f"ERROR, El Porcentaje de salud {salud}% o pension {pension}% son valores fuera del rango legal permitido(4%)")
+    Para usar esta excepción, indique el salario recibido:
+        ErrorSalarioNegativo( salario )
+    """
+    def __init__( self, salario: float ):
+        super().__init__(
+            f"[Salario negativo] "
+            f"El salario ingresado ({salario}) es negativo. "
+            f"Ingrese un valor mayor o igual a 0.")
 
-    valores_devengados = sum([salario, horas_extra, bonificaciones, comisiones, auxilios])
-    salud_dinero = (salud / 100) * salario 
-    pension_dinero = (pension / 100) * salario
-    
-    deducciones_de_ley = sum([salud_dinero, pension_dinero, impuesto_dinero])
-    salario_neto = valores_devengados - deducciones_de_ley
-    return (salario_neto)
+
+class ErrorSalarioGrande( Exception ):
+    """
+    Excepción personalizada para indicar que el salario supera el límite máximo permitido.
+
+    Para usar esta excepción, indique el salario recibido:
+        ErrorSalarioGrande( salario )
+    """
+    def __init__( self, salario: float ):
+        super().__init__(
+            f"[Salario fuera de rango] "
+            f"El salario ({salario:,}) supera el máximo permitido de {MAX_SALARIO:,}. "
+            f"Ingrese un salario entre 0 y {MAX_SALARIO:,}.")
+
+
+class ErrorPorcentajesFueraRango( Exception ):
+    """
+    Excepción personalizada para indicar que el porcentaje de salud o pensión
+    supera el límite legal colombiano.
+
+    Para usar esta excepción, indique los porcentajes recibidos:
+        ErrorPorcentajesFueraRango( salud, pension )
+    """
+    def __init__( self, salud: float, pension: float ):
+        super().__init__(
+            f"[Porcentaje fuera del rango legal] "
+            f"El porcentaje de salud ({salud}%) o pensión ({pension}%) supera el máximo "
+            f"legal permitido en Colombia ({MAX_PORCENTAJE_SALUD}%). "
+            f"Ingrese porcentajes entre 0 y {MAX_PORCENTAJE_SALUD}%.")
+
+
+
+class LiquidacionSalario():
+    """
+    Clase que encapsula los datos necesarios para liquidar el salario de un trabajador.
+    """
+    salario: float
+    horas_extra: float
+    bonificaciones: float
+    comisiones: float
+    auxilios: float
+    salud: float
+    pension: float
+    impuesto_dinero: float
+
+    def __init__( self, salario, horas_extra: float, bonificaciones: float,
+                  comisiones: float, auxilios: float, salud: float,
+                  pension: float, impuesto_dinero: float ):
+        self.salario= salario
+        self.horas_extra= horas_extra
+        self.bonificaciones= bonificaciones
+        self.comisiones= comisiones
+        self.auxilios= auxilios
+        self.salud= salud
+        self.pension= pension
+        self.impuesto_dinero= impuesto_dinero
+
+
+def _validar_campo_obligatorio(liquidacion):
+    if liquidacion.salario == "":
+        raise ErrorCampoObligatorio()
+
+
+def _validar_tipo(liquidacion):
+    if not isinstance(liquidacion.salario, (int, float)):
+        raise ErrorTipoInvalido(liquidacion.salario)
+
+
+def _validar_salario_no_negativo(liquidacion):
+    if liquidacion.salario < 0:
+        raise ErrorSalarioNegativo(liquidacion.salario)
+
+
+def _validar_salario_en_rango(liquidacion):
+    if liquidacion.salario > MAX_SALARIO:
+        raise ErrorSalarioGrande(liquidacion.salario)
+
+
+def _validar_porcentajes(liquidacion):
+    if (liquidacion.salud > MAX_PORCENTAJE_SALUD or 
+        liquidacion.pension > MAX_PORCENTAJE_PENSION):
+        raise ErrorPorcentajesFueraRango(
+            liquidacion.salud, liquidacion.pension)
+
+
+def calcular_salario( liquidacion: LiquidacionSalario ) -> float:
+    """
+    Calcula el salario neto de un trabajador descontando deducciones de ley.
+
+    Parámetros
+    liquidacion : LiquidacionSalario
+        Objeto con todos los datos necesarios para el cálculo:
+        salario, horas_extra, bonificaciones, comisiones, auxilios,
+        salud, pension, impuesto_dinero.
+
+    """
+    _validar_campo_obligatorio(liquidacion)
+    _validar_tipo(liquidacion)
+    _validar_salario_no_negativo(liquidacion)
+    _validar_salario_en_rango(liquidacion)
+    _validar_porcentajes(liquidacion)
+
+    valores_devengados = sum([ liquidacion.salario, liquidacion.horas_extra,
+                               liquidacion.bonificaciones, liquidacion.comisiones,
+                               liquidacion.auxilios ])
+
+    descuento_salud= ( liquidacion.salud / 100 ) * liquidacion.salario
+    descuento_pension= ( liquidacion.pension / 100 ) * liquidacion.salario
+    deducciones_de_ley= sum([ descuento_salud, descuento_pension, liquidacion.impuesto_dinero ])
+
+    return valores_devengados - deducciones_de_ley
