@@ -7,6 +7,10 @@ from model import logica_liquidador
 
 class TestCalculoSalario(unittest.TestCase):
 
+
+
+    # CASOS NORMALES ---------------------------------------------------------------------------
+
     def test_normal1_salario(self):
         """
         test normal de la aplicación
@@ -103,7 +107,9 @@ class TestCalculoSalario(unittest.TestCase):
         # verificar la salida
         self.assertEqual(salario_calculado, salario_esperado)
 
-    # casos extraordinarios
+
+    # CASOS EXTRAORDINARIOS ------------------------------------------------------------------------
+
     def test_empleado_no_trabajo(self):
         """
         test extraordinario que aunque el empleado no haya trabajado, sigue calculando con normalidad.
@@ -203,6 +209,9 @@ class TestCalculoSalario(unittest.TestCase):
 
         # verificar la salida
         self.assertEqual(salario_calculado, salario_esperado)
+
+
+    # CASOS DE ERROR ----------------------------------------------------------------------------
 
     def test_salario_obligatorio(self):
         """
