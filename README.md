@@ -1,14 +1,14 @@
 # Liquidador de Nómina
 
 
-## 👥 Autores
+## Autores
 
 * **Sebastián Rendón Grisales**
 * **Juan Camilo Gómez Gómez**
 
 ---
 
-## 📌 Descripción
+## Descripción
 
 Este proyecto corresponde a una aplicación web para el curso **Código Limpio** de la **Universidad de Medellín**.
 
@@ -21,11 +21,11 @@ El valor final de la nómina se obtiene como la diferencia entre los valores dev
 
 ---
 
-## 🎯 Objetivo
+## Objetivo
 
 Desarrollar una aplicación clara, funcional y bien estructurada que aplique los principios de **Código Limpio**.
 
-## ⚙️ Funcionalidades principales
+## Funcionalidades principales
 
 * Cálculo del total devengado por el empleado
 * Cálculo del valor neto a pagar
@@ -55,7 +55,7 @@ py src/view/consola_liquidador.py
 
 ---
  
-## 🧪 Ejecución de pruebas
+## Ejecución de pruebas
  
 Para ejecutar las pruebas unitarias, diríjase a la carpeta raíz y use el siguiente comando:
  
@@ -72,17 +72,26 @@ sys.path.append("src")
  
 ---
 
-## 🏗️ Construcción
-- carpeta docs: Contenido extra que posee la aplicación. Contiene archivos propios relacionados a la aplicación en general.
-- carpeta src: Codigo fuente de la aplicación. Posee subcarpetas que contienen las diferentes capas que permiten el funcionamiento general.
-- carpeta tests: Pruebas unitarias de la aplicación.
+## Arquitectura
+
+### Bibliotecas usadas
+- `unittest`: pruebas automatizadas (incluida en Python, no requiere instalación)
+
+### Organización de módulos
+
+- **`docs/`**: Contenido de apoyo al proyecto. Contiene los casos de prueba en Excel y la entrevista con el experto.
+
+- **`src/`**: Código fuente de la aplicación, dividido en dos capas:
+  - **`model/`**: Capa de lógica y datos.
+    - `errores.py`: Define las excepciones personalizadas y las constantes del dominio.
+    - `logica_liquidador.py`: Contiene la clase `LiquidacionSalario`, las validaciones y el cálculo del salario neto.
+  - **`view/`**: Capa de interacción con el usuario.
+    - `consola_liquidador.py`: Interfaz por consola que recibe los datos del usuario y muestra el resultado.
+
+- **`tests/`**: Pruebas unitarias de la aplicación.
+  - `test_liquidador.py`: Casos de prueba para validaciones y cálculo del salario neto.
 
 Cada carpeta de código fuente contiene un archivo `__init__.py` que permite que Python reconozca la carpeta como un módulo y pueda realizar importaciones correctamente.
-
-### Bibliotecas y dependencias
-
-Las bibliotecas externas utilizadas son:
-- `pytest` — para las pruebas unitarias
 
 ---
 ## 📤 Entradas y salidas
