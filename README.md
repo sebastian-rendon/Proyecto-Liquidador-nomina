@@ -3,8 +3,7 @@
 
 ## Autores
 
-* **Sebastián Rendón Grisales**
-* **Juan Camilo Gómez Gómez**
+* **Luis Alejandro Correa Arrieta**
 
 ---
 
@@ -143,3 +142,62 @@ Este repositorio incluye el documento de excel el cual tiene los casos de prueba
 **Universidad de Medellín**
 
 Curso: **Código Limpio**
+
+---
+---
+# Aparte 
+---
+---
+
+
+# Liquidador de Nómina
+
+## Autor
+
+* **Luis Alejandro Correa Arrieta**
+
+---
+
+## Descripción
+
+Este proyecto corresponde a una aplicación desarrollada para el curso **Código Limpio** de la **Universidad de Medellín**.
+
+El **Liquidador de Nómina** permite calcular el valor total a pagar a un empleado, teniendo en cuenta:
+
+- Los **valores devengados** (salario base, horas extra, bonificaciones, comisiones, auxilios)
+- Las **deducciones de ley** (salud, pensión e impuestos)
+
+El valor final de la nómina se obtiene como la diferencia entre los valores devengados y las deducciones.
+
+---
+
+## Objetivo
+
+Desarrollar una aplicación clara, funcional y bien estructurada que aplique los principios de:
+
+- Código limpio
+- Separación de responsabilidades
+- Modularidad
+- Legibilidad
+
+---
+
+## Funcionalidades principales
+
+- Cálculo del total devengado
+- Cálculo del salario neto
+- Validación de datos
+- Separación entre lógica (`model`) e interfaz (`view`)
+- Pruebas unitarias
+
+---
+
+## Requisitos del sistema
+
+- Python **3.8 o superior**
+- Pip (gestor de paquetes de Python)
+
+Verificar versión:
+
+```bash
+python --version
