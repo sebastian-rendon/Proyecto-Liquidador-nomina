@@ -16,14 +16,14 @@ class liquidador_nomina(App):
     def build(self):
         self.layout = GridLayout(cols=2, padding=10, spacing=10)
 
-        self.salario_input = TextInput(hint_text='Ingrese tu salario mensual', multiline=False)
-        self.extras_input = TextInput(hint_text='Ingrese el valor de las horas extra', multiline=False)
-        self.bonificaciones_input = TextInput(hint_text='Ingrese el valor de las bonificaciones', multiline=False)
-        self.comisiones_input = TextInput(hint_text='Ingrese el valor de las comisiones', multiline=False)
-        self.auxilios_input = TextInput(hint_text='Ingrese el valor de los aux', multiline=False)
-        self.salud_input = TextInput(hint_text='Ingrese el porcentaje de salud que paga', multiline=False)
-        self.pension_input = TextInput(hint_text='Ingrese el porcentaje de pensión que paga', multiline=False)
-        self.impuesto_input = TextInput(hint_text='Ingrese el valor de los impuestos que paga', multiline=False)
+        self.salario_input = TextInput(text='Ingrese tu salario mensual', multiline=False)
+        self.extras_input = TextInput(text='Ingrese el valor de las horas extra', multiline=False)
+        self.bonificaciones_input = TextInput(text='Ingrese el valor de las bonificaciones', multiline=False)
+        self.comisiones_input = TextInput(text='Ingrese el valor de las comisiones', multiline=False)
+        self.auxilios_input = TextInput(text='Ingrese el valor de los aux', multiline=False)
+        self.salud_input = TextInput(text='Ingrese el porcentaje de salud que paga', multiline=False)
+        self.pension_input = TextInput(text='Ingrese el porcentaje de pensión que paga', multiline=False)
+        self.impuesto_input = TextInput(text='Ingrese el valor de los impuestos que paga', multiline=False)
 
         self.layout.add_widget(Label(text='Salario mensual:'))
         self.layout.add_widget(self.salario_input)
