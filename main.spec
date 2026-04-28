@@ -3,10 +3,10 @@
 
 a = Analysis(
     ['main.py'],
-    pathex=['src'],
+    pathex=[],
     binaries=[],
-    datas=[],
-    hiddenimports=[],
+    datas=[('src', 'src')],
+    hiddenimports=['kivy.app', 'kivy.uix.button', 'kivy.uix.label', 'kivy.uix.textinput', 'kivy.uix.gridlayout', 'kivy.core.window', 'kivy.graphics'],
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
@@ -29,7 +29,7 @@ exe = EXE(
     upx=True,
     upx_exclude=[],
     runtime_tmpdir=None,
-    console=True,
+    console=False,
     disable_windowed_traceback=False,
     argv_emulation=False,
     target_arch=None,
