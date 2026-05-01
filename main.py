@@ -24,7 +24,7 @@ else:
 sys.path.append(base_path)
 sys.path.append(os.path.join(base_path, 'src'))
 
-# CORRIGE ESTO según dónde esté My_App:
+# este es My_App:
 try:
     from view.gui import My_App 
 except ImportError:
