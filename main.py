@@ -1,6 +1,6 @@
 import os
 import sys
-
+# directamente en main tengo para ejecutar en .exe y en android, así que configuro las rutas para ambos casos
 
 # Obtener la ruta donde se está ejecutando la App en Android
 current_path = os.path.dirname(os.path.abspath(__file__))

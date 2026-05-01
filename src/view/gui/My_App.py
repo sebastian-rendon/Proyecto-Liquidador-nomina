@@ -10,26 +10,31 @@ import sys
 import os
 import sys
 
-
-# Esto detecta si corre como .py o como .exe
+# --- SECCIÓN: CONFIGURACIÓN DE ENTORNO Y RUTAS ---
+# Verifica si la aplicación se está ejecutando desde un paquete congelado (como PyInstaller .exe)
+# _MEIPASS es una carpeta temporal donde PyInstaller extrae los recursos.
 if hasattr(sys, '_MEIPASS'):
     base_path = sys._MEIPASS
 else:
+    # Si corre como script normal .py, usa el directorio actual.
     base_path = os.path.abspath(".")
 
-# Añadimos la ruta de 'src' de forma absoluta
+# Se añade la carpeta 'src' al path del sistema para que Python encuentre el módulo 'model'.
+# Esto es vital para que tanto el .exe como el .apk localicen la lógica de negocio.
 sys.path.append(os.path.join(base_path, 'src'))
 
 from model import logica_liquidador
 
-
+# Configuración del color de fondo de la ventana (Blanco).
 Window.clearcolor = (1, 1, 1, 1)
 
 class liquidador_nomina(App):
 
     def build(self):
+        # Contenedor principal: Una sola columna con espaciado y relleno (padding).
         main_layout = GridLayout(cols=1, padding=30, spacing=20)
 
+        # Configuración del Título Principal de la interfaz.
         titulo = Label(
             text='Calculadora de Liquidación de Nómina',
             font_size=22,
@@ -40,9 +45,11 @@ class liquidador_nomina(App):
         )
         main_layout.add_widget(titulo)
 
+        # Layout secundario para el formulario (etiquetas a la izquierda, campos a la derecha).
         layout = GridLayout(cols=2, spacing=12, size_hint_y=None)
         layout.bind(minimum_height=layout.setter('height'))
 
+        # FUNCIÓN INTERNA: Aplica diseño a las etiquetas de texto.
         def estilo_label(text):
             lbl = Label(
                 text=text,
@@ -50,6 +57,7 @@ class liquidador_nomina(App):
                 size_hint_y=None,
                 height=45
             )
+            # Dibujo de bordes decorativos en las etiquetas.
             with lbl.canvas.after:
                 lbl.border_color = Color(0.3, 0.6, 1, 1)
                 lbl.border_line = Line(width=1.2)
@@ -61,14 +69,15 @@ class liquidador_nomina(App):
             lbl.bind(pos=update_border, size=update_border)
             return lbl
 
+        # FUNCIÓN INTERNA: Aplica diseño y comportamiento a los cuadros de entrada de texto.
         def estilo_input(hint):
             input_box = TextInput(
                 hint_text=hint,
                 multiline=False,
-                input_filter='float',
+                input_filter='float', # Solo permite números decimales.
                 size_hint_y=None,
                 height=45,
-                background_normal='',
+                background_normal='', # Elimina la textura por defecto de Kivy.
                 background_color=(0.95, 0.95, 0.95, 1),
                 foreground_color=(0, 0, 0, 1),
                 cursor_color=(0.2, 0.5, 0.9, 1)
@@ -76,11 +85,13 @@ class liquidador_nomina(App):
             with input_box.canvas.after:
                 input_box.border_color = Color(0.7, 0.7, 0.7, 1)
                 input_box.border_line = Line(width=1.2)
+            # Actualiza la posición del borde si la ventana cambia de tamaño.
             def update_border(*args):
                 input_box.border_line.rectangle = (
                     input_box.x, input_box.y,
                     input_box.width, input_box.height
                 )
+            # Cambia el color del borde cuando el usuario hace clic en el campo (foco).
             def on_focus(instance, value):
                 if value:
                     input_box.border_color.rgb = (0.2, 0.5, 1)
@@ -92,6 +103,7 @@ class liquidador_nomina(App):
             input_box.bind(focus=on_focus)
             return input_box
 
+        # Inicialización de los campos de entrada como atributos de la clase.
         self.salario_input = estilo_input('2000000')
         self.extras_input = estilo_input('100000')
         self.bonificaciones_input = estilo_input('50000')
@@ -101,6 +113,7 @@ class liquidador_nomina(App):
         self.pension_input = estilo_input('1 - 4')
         self.impuesto_input = estilo_input('50000')
 
+        # Organización visual: Se añaden etiquetas y campos al grid de 2 columnas.
         layout.add_widget(estilo_label('Salario'))
         layout.add_widget(self.salario_input)
 
@@ -127,6 +140,7 @@ class liquidador_nomina(App):
 
         main_layout.add_widget(layout)
 
+        # Botón de acción principal para disparar el cálculo.
         self.button = Button(
             text='CALCULAR',
             size_hint_y=None,
@@ -139,6 +153,7 @@ class liquidador_nomina(App):
         self.button.bind(on_press=self.calcular_nomina)
         main_layout.add_widget(self.button)
 
+        # Etiqueta donde se mostrará el Salario Neto final o mensajes de error.
         self.result_label = Label(
             text='Resultado aparecerá aquí',
             size_hint_y=None,
@@ -149,8 +164,10 @@ class liquidador_nomina(App):
 
         return main_layout
 
+    # --- SECCIÓN: LÓGICA DE PROCESAMIENTO ---
     def calcular_nomina(self, instance):
         try:
+            # Captura de datos y conversión a tipo float. Si está vacío, usa 0.
             salario = float(self.salario_input.text or 0)
             extras = float(self.extras_input.text or 0)
             bonificaciones = float(self.bonificaciones_input.text or 0)
@@ -160,6 +177,7 @@ class liquidador_nomina(App):
             pension = float(self.pension_input.text or 0)
             impuesto = float(self.impuesto_input.text or 0)
 
+            # Validaciones de reglas de negocio para porcentajes de ley.
             if salud < 1 or salud > 4:
                 self.result_label.text = "Error en salud"
                 self.result_label.color = (1, 0, 0, 1)
@@ -170,6 +188,7 @@ class liquidador_nomina(App):
                 self.result_label.color = (1, 0, 0, 1)
                 return
 
+            # Comunicación con la capa 'model': Se crea el objeto con los datos procesados.
             salario_total = logica_liquidador.LiquidacionSalario(
                 salario=salario,
                 horas_extra=extras,
@@ -181,15 +200,18 @@ class liquidador_nomina(App):
                 impuesto_dinero=impuesto
             )
 
+            # Llamada a la función del modelo para obtener el cálculo final.
             salario_neto = logica_liquidador.calcular_salario(salario_total)
 
+            # Actualización exitosa de la interfaz con el resultado formateado en moneda.
             self.result_label.color = (0, 0.6, 0, 1)
             self.result_label.text = f"${salario_neto:,.2f}"
 
         except:
+            # Captura cualquier error de entrada (caracteres no numéricos, etc.)
             self.result_label.text = "Error en datos"
             self.result_label.color = (1, 0, 0, 1)
 
-
+# Punto de entrada de la aplicación.
 if __name__ == '__main__':
     liquidador_nomina().run()
