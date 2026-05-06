@@ -3,8 +3,8 @@
 
 ## Autores
 
-* **Sebastián Rendón Grisales**
-* **Juan Camilo Gómez Gómez**
+* **Luis Alejandro Correa Arrieta**
+* **Juan Felipe Santiago Pinzon**
 
 ---
 
@@ -143,3 +143,83 @@ Este repositorio incluye el documento de excel el cual tiene los casos de prueba
 **Universidad de Medellín**
 
 Curso: **Código Limpio**
+
+---
+---
+# Aparte 
+---
+---
+
+
+# Liquidador de Nómina
+
+## Autor
+
+* **Luis Alejandro Correa Arrieta**
+
+---
+
+## Descripción
+
+Este proyecto corresponde a una aplicación desarrollada para el curso **Código Limpio** de la **Universidad de Medellín**.
+
+El **Liquidador de Nómina** permite calcular el valor total a pagar a un empleado, teniendo en cuenta:
+
+- Los **valores devengados** (salario base, horas extra, bonificaciones, comisiones, auxilios)
+- Las **deducciones de ley** (salud, pensión e impuestos)
+
+El valor final de la nómina se obtiene como la diferencia entre los valores devengados y las deducciones.
+
+---
+
+## Objetivo
+
+Desarrollar una aplicación clara, funcional y bien estructurada que aplique los principios de:
+
+- Código limpio
+- Separación de responsabilidades
+- Modularidad
+- Legibilidad
+
+---
+
+## Funcionalidades principales
+
+- Cálculo del total devengado
+- Cálculo del salario neto
+- Validación de datos
+- Separación entre lógica (`model`) e interfaz (`view`)
+- Pruebas unitarias
+
+---
+
+## 📝 Descripción del Proyecto
+El **Liquidador de Nómina** permite calcular con precisión el valor neto a pagar a un trabajador, procesando de manera independiente los ingresos y los descuentos:
+
+1.  **Valores Devengados:** Salario base, horas extra (recargos), bonificaciones, comisiones y auxilios (transporte/otros).
+2.  **Deducciones de Ley:** Descuentos obligatorios de salud, pensión e impuestos aplicables.
+
+**Objetivo Técnico:** Desarrollar una aplicación clara y bien estructurada que aplique los principios de modularidad, validación de datos y legibilidad para entregar una herramienta funcional y fácil de mantener.
+
+---
+
+## 🚀 Guía de Ejecución y Despliegue
+
+### 1. Ejecución desde Código Fuente (Consola)
+Ideal para entornos de desarrollo y depuración rápida de la lógica de negocio.
+* **Prerrequisito:** Python 3.8 o superior instalado en el sistema.
+* **Comando de ejecución:**
+  ```bash
+  python src/view/consola_liquidador.py
+
+---
+
+## Requisitos del sistema
+
+- Python **3.8 o superior**
+- Pip (gestor de paquetes de Python)
+
+Verificar versión:
+
+```bash
+python --version
